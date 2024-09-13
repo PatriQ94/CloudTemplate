@@ -10,6 +10,11 @@ public class BasketService(IBasketRepository _basketRepository) : IBasketService
         return await _basketRepository.Insert(userId, productId, productName, productPrice, quantity);
     }
 
+    public async Task Update(Guid productId, string productName, decimal productPrice)
+    {
+        await _basketRepository.Update(productId, productName, productPrice);
+    }
+
     public async Task<BasketDTO?> GetBasketByUserId(Guid userId)
     {
         BO.Models.Basket? userBasket = await _basketRepository.GetBasketByUserId(userId);

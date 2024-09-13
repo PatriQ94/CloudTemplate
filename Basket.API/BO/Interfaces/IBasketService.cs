@@ -7,4 +7,5 @@ public interface IBasketService
 {
     Task<BasketDTO?> GetBasketByUserId(Guid userId);
     Task<Guid> Insert(Guid userId, Guid productId, string productName, decimal productPrice, int quantity);
+    Task Update(Guid productId, string productName, decimal productPrice);
 }

@@ -14,6 +14,6 @@ var basketApi = builder.AddProject<Projects.Basket_API>("basket-api");
 // Define references between resources
 productApi.WithReference(basketApi).WithReference(redis).WithReference(messaging);
 orderApi.WithReference(basketApi);
-basketApi.WithReference(productApi).WithReference(orderApi);
+basketApi.WithReference(productApi).WithReference(orderApi).WithReference(messaging);
 
 builder.Build().Run();

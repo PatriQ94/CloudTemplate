@@ -1,9 +1,11 @@
-﻿using Product.API.BO.DTOs;
+﻿using MassTransit;
+using Product.API.BO.DTOs;
 using Product.API.BO.Interfaces;
+using Shared.BO.DTOs;
 
 namespace Product.API.BL.Services;
 
-public class ProductService(IProductRepository _productRepository, IHttpClientFactory _clientFactory) : IProductService
+public class ProductService(IProductRepository _productRepository, IPublishEndpoint _publishEndpoint) : IProductService
 {
     public async Task<Guid> Insert(string name, string code, decimal price, string? description)
     {
@@ -16,6 +18,12 @@ public class ProductService(IProductRepository _productRepository, IHttpClientFa
         await _productRepository.Update(id, name, price, description);
 
         // Update baskets on Basket API
+        await _publishEndpoint.Publish(new ItemUpdatedEvent()
+        {
+            Id = id,
+            Name = name,
+            Price = price
+        });
 
         // TODO: update Redis cache
     }

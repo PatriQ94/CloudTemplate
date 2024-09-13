@@ -69,4 +69,18 @@ public class BasketRepository : IBasketRepository
             }).ToList()
         };
     }
+
+    public async Task Update(Guid productId, string productName, decimal productPrice)
+    {
+        foreach (var item in _baskets.SelectMany(b => b.Items))
+        {
+            if (item.ProductId != productId)
+            {
+                continue;
+            }
+
+            item.ProductName = productName;
+            item.ProductPrice = productPrice;
+        }
+    }
 }

@@ -35,23 +35,22 @@ public static class StartUpExtensions
         builder.Services.AddBusinessLogic(builder.Configuration);
         builder.Services.AddDataAccessLayer(builder.Configuration);
 
+        builder.Services.AddControllers();
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
+
+        // Register RabbitMQ
         builder.Services.AddMassTransit(busConfigurator =>
         {
             busConfigurator.SetKebabCaseEndpointNameFormatter();
             busConfigurator.UsingRabbitMq((context, configurator) =>
             {
-                configurator.Host(new Uri("amqp://rabbitmq"), h =>
-                {
-                    h.Username("guest");
-                    h.Password("guest");
-                });
+                var configService = context.GetRequiredService<IConfiguration>();
+                var connectionString = configService.GetConnectionString("rabbitmq");
+                configurator.Host(connectionString);
                 configurator.ConfigureEndpoints(context);
             });
         });
-
-        builder.Services.AddControllers();
-        builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
     }
 
     //Configure the HTTP middleware pipeline

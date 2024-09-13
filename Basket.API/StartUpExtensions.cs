@@ -1,5 +1,7 @@
 ﻿using Basket.API.BL;
+using Basket.API.BL.Events;
 using Basket.API.DAL;
+using MassTransit;
 using Serilog;
 using Shared;
 
@@ -34,6 +36,22 @@ public static class StartUpExtensions
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+
+        // Register RabbitMQ
+        builder.Services.AddMassTransit(busConfigurator =>
+        {
+            busConfigurator.SetKebabCaseEndpointNameFormatter();
+
+            busConfigurator.AddConsumer<ItemUpdatedConsumer>();
+
+            busConfigurator.UsingRabbitMq((context, configurator) =>
+            {
+                var configService = context.GetRequiredService<IConfiguration>();
+                var connectionString = configService.GetConnectionString("rabbitmq");
+                configurator.Host(connectionString);
+                configurator.ConfigureEndpoints(context);
+            });
+        });
     }
 
     //Configure the HTTP middleware pipeline

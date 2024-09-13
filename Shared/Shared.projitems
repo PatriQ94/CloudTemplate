@@ -9,7 +9,11 @@
     <Import_RootNamespace>Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)LoggerConfig.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ServiceName.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BO\DTOs\ItemUpdatedEvent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)API\Helpers\LoggerConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)API\Helpers\ServiceName.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)API\Helpers\" />
   </ItemGroup>
 </Project>
