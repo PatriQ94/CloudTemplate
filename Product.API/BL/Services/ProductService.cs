@@ -3,11 +3,21 @@ using Product.API.BO.Interfaces;
 
 namespace Product.API.BL.Services;
 
-public class ProductService(IProductRepository _productRepository) : IProductService
+public class ProductService(IProductRepository _productRepository, IHttpClientFactory _clientFactory) : IProductService
 {
     public async Task<Guid> Insert(string name, string code, decimal price, string? description)
     {
         return await _productRepository.Insert(name, code, price, description);
+    }
+
+    public async Task Update(Guid id, string name, decimal price, string? description)
+    {
+        // Update local data
+        await _productRepository.Update(id, name, price, description);
+
+        // Update baskets on Basket API
+
+        // TODO: update Redis cache
     }
 
     public async Task<List<ProductDTO>> GetProducts()

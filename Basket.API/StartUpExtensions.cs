@@ -12,6 +12,8 @@ public static class StartUpExtensions
     //Register all the services
     public static void ConfigureServices(WebApplicationBuilder builder)
     {
+        builder.AddServiceDefaults();
+
         builder.ConfigureLogging(builder.Configuration);
 
         builder.Services.AddCors(options =>
@@ -24,8 +26,6 @@ public static class StartUpExtensions
                     builder.AllowAnyMethod();
                 });
         });
-
-        builder.AddServiceDefaults();
 
         // Add services to the container.
         builder.Services.AddBusinessLogic(builder.Configuration);

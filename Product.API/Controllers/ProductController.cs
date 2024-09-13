@@ -17,6 +17,15 @@ public class ProductController(IProductService _productService) : ControllerBase
     }
 
     /// <summary>
+    /// Adds a new product 
+    /// </summary>
+    [HttpPost("Update")]
+    public async Task Update(ProductDTO product)
+    {
+        await _productService.Update(product.Id, product.Name, product.Price, product.Description);
+    }
+
+    /// <summary>
     /// Returns all existing products
     /// </summary>
     [HttpGet("GetProducts")]

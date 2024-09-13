@@ -27,6 +27,14 @@ public class ProductRepository : IProductRepository
         return product.Id;
     }
 
+    public async Task Update(Guid id, string name, decimal price, string? description)
+    {
+        var product = _products.Find(p => p.Id == id) ?? throw new Exception($"Product not found");
+        product.Name = name;
+        product.Price = price;
+        product.Description = description;
+    }
+
     public async Task<List<BO.Models.Product>> GetProducts()
     {
         if (_products.Count == 0)
