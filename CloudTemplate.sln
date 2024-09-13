@@ -5,7 +5,7 @@ VisualStudioVersion = 17.11.35303.130
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Basket.API", "Basket.API\Basket.API.csproj", "{F10876E5-9A0A-4E23-9EE0-64F59D57B7DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudTemplate.AppHost", "CloudTemplate.AppHost\CloudTemplate.AppHost.csproj", "{3FCD4A29-8640-4C5B-8CA4-DF00FF5E0861}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudTemplate.AppHost", "CloudTemplate.AppHost\CloudTemplate.AppHost.csproj", "{3FCD4A29-8640-4C5B-8CA4-DF00FF5E0861}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudTemplate.ServiceDefaults", "CloudTemplate.ServiceDefaults\CloudTemplate.ServiceDefaults.csproj", "{7171D0E0-58B7-4A77-8012-648F4F19B833}"
 EndProject
@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Order.API", "Order.API\Orde
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Product.API", "Product.API\Product.API.csproj", "{377CC8DF-273A-42F9-A0C4-BE917A9A370A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{848EF6C1-3639-4D4A-B1C1-60FB24789C6F}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Shared", "Shared\Shared.shproj", "{D3D02C37-8FAA-418B-842D-5AE84DD84A19}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,15 +41,17 @@ Global
 		{377CC8DF-273A-42F9-A0C4-BE917A9A370A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{377CC8DF-273A-42F9-A0C4-BE917A9A370A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{377CC8DF-273A-42F9-A0C4-BE917A9A370A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{848EF6C1-3639-4D4A-B1C1-60FB24789C6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{848EF6C1-3639-4D4A-B1C1-60FB24789C6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{848EF6C1-3639-4D4A-B1C1-60FB24789C6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{848EF6C1-3639-4D4A-B1C1-60FB24789C6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5F70A6BB-03E8-4781-ADC6-E749860740CE}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Shared\Shared.projitems*{377cc8df-273a-42f9-a0c4-be917a9a370a}*SharedItemsImports = 5
+		Shared\Shared.projitems*{53ec4dd4-b855-45c2-b545-f74a81ec53b6}*SharedItemsImports = 5
+		Shared\Shared.projitems*{d3d02c37-8faa-418b-842d-5ae84dd84a19}*SharedItemsImports = 13
+		Shared\Shared.projitems*{f10876e5-9a0a-4e23-9ee0-64f59d57b7df}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal
