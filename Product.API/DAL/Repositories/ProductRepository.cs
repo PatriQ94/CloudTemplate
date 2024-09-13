@@ -9,7 +9,7 @@ public class ProductRepository : IProductRepository
 
     public async Task<Guid> Insert(string name, string code, decimal price, string? description)
     {
-        Models.Product? product = _products.Find(p => p.Name == name && p.Code == code);
+        Models.Product? product = _products.Find(p => p.Code == code);
         if (product != null)
         {
             return product.Id;

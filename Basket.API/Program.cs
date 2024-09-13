@@ -1,29 +1,29 @@
-var builder = WebApplication.CreateBuilder(args);
+using Basket.API;
+using Serilog;
 
-builder.AddServiceDefaults();
-
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-var app = builder.Build();
-
-app.MapDefaultEndpoints();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+try
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    var builder = WebApplication.CreateBuilder(args);
+
+    //Here we register all the services
+    StartUpExtensions.ConfigureServices(builder);
+
+    var app = builder.Build();
+
+    //Here we configure the HTTP middleware pipeline
+    StartUpExtensions.Configure(app);
+
+    Log.Information("Basket API starting up");
+    app.Run();
 }
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();
+catch (Exception ex)
+{
+    if (ex is not HostAbortedException)
+    {
+        Log.Fatal(ex, "Basket API failed to start correctly");
+    }
+}
+finally
+{
+    Log.CloseAndFlush();
+}
