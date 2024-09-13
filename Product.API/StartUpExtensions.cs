@@ -1,4 +1,5 @@
-﻿using Product.API.BL;
+﻿using MassTransit;
+using Product.API.BL;
 using Product.API.DAL;
 using Serilog;
 using Shared;
@@ -33,6 +34,20 @@ public static class StartUpExtensions
         // Add services to the container.
         builder.Services.AddBusinessLogic(builder.Configuration);
         builder.Services.AddDataAccessLayer(builder.Configuration);
+
+        builder.Services.AddMassTransit(busConfigurator =>
+        {
+            busConfigurator.SetKebabCaseEndpointNameFormatter();
+            busConfigurator.UsingRabbitMq((context, configurator) =>
+            {
+                configurator.Host(new Uri("amqp://rabbitmq"), h =>
+                {
+                    h.Username("guest");
+                    h.Password("guest");
+                });
+                configurator.ConfigureEndpoints(context);
+            });
+        });
 
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
