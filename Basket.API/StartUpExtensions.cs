@@ -42,6 +42,7 @@ public static class StartUpExtensions
         {
             busConfigurator.SetKebabCaseEndpointNameFormatter();
 
+            // Register all consumers
             busConfigurator.AddConsumer<ItemUpdatedConsumer>();
 
             busConfigurator.UsingRabbitMq((context, configurator) =>

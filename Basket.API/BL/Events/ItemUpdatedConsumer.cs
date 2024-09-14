@@ -4,7 +4,7 @@ using Shared.BO.DTOs;
 
 namespace Basket.API.BL.Events;
 
-public class ItemUpdatedConsumer(IBasketService _basketService, ILogger<ItemUpdatedConsumer> _logger) : IConsumer<ItemUpdatedEvent>
+public class ItemUpdatedConsumer(IBasketService _basketService) : IConsumer<ItemUpdatedEvent>
 {
     public async Task Consume(ConsumeContext<ItemUpdatedEvent> context)
     {
