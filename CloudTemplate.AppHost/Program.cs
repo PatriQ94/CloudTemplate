@@ -1,7 +1,14 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
 // Register RabbitMQ
-var messaging = builder.AddRabbitMQ("rabbitmq");
+var username = builder.AddParameter("username", secret: true);
+var password = builder.AddParameter("password", secret: true);
+var messaging = builder.AddRabbitMQ("rabbitmq", username, password).WithManagementPlugin();
+
+// Register postgres
+var dataDirectory = Environment.CurrentDirectory.Replace("CloudTemplate.AppHost", "Data");
+var postgres = builder.AddPostgres("postgres", username, password).WithDataBindMount("C:\\Repositories\\CloudTemplate\\Data");
+var postgresdb = postgres.AddDatabase("postgresdb");
 
 // Register Redis cache
 var redis = builder.AddRedis("redis");
