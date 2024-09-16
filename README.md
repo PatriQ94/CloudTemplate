@@ -1,6 +1,15 @@
-
+﻿
 
 <h2 align="center">.NET 8 microservices reference implementation</h2>
+
+<p align="center">
+  <a href="#about">About</a> ◈
+  <a href="#architecture">Architecture</a> ◈
+  <a href="#prerequisites">Prerequisites</a> ◈
+  <a href="#build-and-run">Build and run</a> ◈
+  <a href="#todo">TODO</a>
+</p>
+
 
 ## About
 
@@ -15,6 +24,15 @@ It also includes a variety of different tools and technologies such as [PostgreS
 case of need.**
 
 These docs are work in progress :)
+
+## Architecture
+TBD
+
+## Prerequisites
+TBD
+
+## Build and run
+TBD
 
 ## TODO
 
