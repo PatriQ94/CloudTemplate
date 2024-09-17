@@ -13,15 +13,10 @@ public class ProductRepository : IProductRepository
         _context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
     }
 
-    // Temporary in-memory list instead of real database
-    private static readonly List<Models.Product> _products = [];
-
     public async Task<Guid> Insert(string name, string code, decimal price, string? description)
     {
-
-        var canConnect = await _context.Database.CanConnectAsync();
-
-        Models.Product? product = _products.Find(p => p.Code == code);
+        Models.Product? product = await _context.Products
+            .FirstOrDefaultAsync(p => p.Code == code);
         if (product != null)
         {
             return product.Id;
@@ -35,31 +30,30 @@ public class ProductRepository : IProductRepository
             Price = price,
             Description = description
         };
-        _products.Add(product);
+        await _context.Products.AddAsync(product);
+        await _context.SaveChangesAsync();
         return product.Id;
     }
 
     public async Task Update(Guid id, string name, decimal price, string? description)
     {
-        var product = _products.Find(p => p.Id == id) ?? throw new Exception($"Product not found");
+        var product = await _context.Products.FindAsync(id) ?? throw new Exception($"Product not found");
         product.Name = name;
         product.Price = price;
         product.Description = description;
+        _context.Products.Update(product);
+        await _context.SaveChangesAsync();
     }
 
     public async Task<List<BO.Models.Product>> GetProducts()
     {
-        if (_products.Count == 0)
-        {
-            return [];
-        }
-        return _products.Select(p => new BO.Models.Product()
+        return await _context.Products.Select(p => new BO.Models.Product()
         {
             Id = p.Id,
             Name = p.Name,
             Code = p.Code,
             Price = p.Price,
             Description = p.Description
-        }).ToList();
+        }).ToListAsync();
     }
 }

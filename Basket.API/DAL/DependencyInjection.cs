@@ -5,9 +5,13 @@ namespace Basket.API.DAL;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddDataAccessLayer(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddDataAccessLayer(this IServiceCollection services, WebApplicationBuilder builder)
     {
-        services.AddScoped<IBasketRepository, BasketRepository>();
+        builder.AddNpgsqlDbContext<DBContext>("basketdb");
+
+        services
+            .AddScoped<IBasketRepository, BasketRepository>()
+            .AddScoped<IAdminRepository, AdminRepository>();
 
         return services;
     }

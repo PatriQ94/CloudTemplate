@@ -1,5 +1,6 @@
 ﻿using Basket.API.BL;
 using Basket.API.BL.Events;
+using Basket.API.BO.Interfaces;
 using Basket.API.DAL;
 using MassTransit;
 using Serilog;
@@ -30,8 +31,8 @@ public static class StartUpExtensions
         });
 
         // Add services to the container.
-        builder.Services.AddBusinessLogic(builder.Configuration);
-        builder.Services.AddDataAccessLayer(builder.Configuration);
+        builder.Services.AddBusinessLogic();
+        builder.Services.AddDataAccessLayer(builder);
 
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
@@ -76,5 +77,13 @@ public static class StartUpExtensions
         app.UseAuthorization();
 
         app.MapControllers();
+
+        // Create databases if they don't exist
+        Task.Run(async () =>
+        {
+            using var scope = app.Services.CreateScope();
+            var dataSeeder = scope.ServiceProvider.GetRequiredService<IAdminRepository>();
+            await dataSeeder.CreateDatabase();
+        });
     }
 }

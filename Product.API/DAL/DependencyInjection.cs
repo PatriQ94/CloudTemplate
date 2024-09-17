@@ -7,8 +7,7 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddDataAccessLayer(this IServiceCollection services, WebApplicationBuilder builder)
     {
-        builder.AddNpgsqlDbContext<DBContext>("postgresdb");
-        //services.AddNpgsql<DBContext>("postgresdb");
+        builder.AddNpgsqlDbContext<DBContext>("productdb");
 
         services
             .AddScoped<IProductRepository, ProductRepository>()
