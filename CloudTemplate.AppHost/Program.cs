@@ -7,7 +7,7 @@ var messaging = builder.AddRabbitMQ("rabbitmq", username, password).WithManageme
 
 // Register postgres
 var dataDirectory = Environment.CurrentDirectory.Replace("CloudTemplate.AppHost", "Data");
-var postgres = builder.AddPostgres("postgres", username, password).WithDataBindMount("C:\\Repositories\\CloudTemplate\\Data");
+var postgres = builder.AddPostgres("postgres").WithPgAdmin().WithDataBindMount("C:\\Repositories\\CloudTemplate\\Data");
 var postgresdb = postgres.AddDatabase("postgresdb");
 
 // Register Redis cache
@@ -19,8 +19,8 @@ var orderApi = builder.AddProject<Projects.Order_API>("order-api");
 var basketApi = builder.AddProject<Projects.Basket_API>("basket-api");
 
 // Define references between resources
-productApi.WithReference(basketApi).WithReference(redis).WithReference(messaging);
-orderApi.WithReference(basketApi);
-basketApi.WithReference(productApi).WithReference(orderApi).WithReference(messaging);
+productApi.WithReference(basketApi).WithReference(redis).WithReference(messaging).WithReference(postgresdb);
+orderApi.WithReference(basketApi).WithReference(postgresdb); ;
+basketApi.WithReference(productApi).WithReference(orderApi).WithReference(messaging).WithReference(postgresdb);
 
 builder.Build().Run();

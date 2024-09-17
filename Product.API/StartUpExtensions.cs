@@ -1,5 +1,6 @@
 ﻿using MassTransit;
 using Product.API.BL;
+using Product.API.BO.Interfaces;
 using Product.API.DAL;
 using Serilog;
 using Shared;
@@ -74,5 +75,13 @@ public static class StartUpExtensions
         app.UseAuthorization();
 
         app.MapControllers();
+
+        // Create databases if they don't exist
+        Task.Run(async () =>
+        {
+            using var scope = app.Services.CreateScope();
+            var dataSeeder = scope.ServiceProvider.GetRequiredService<IAdminRepository>();
+            await dataSeeder.CreateDatabase();
+        });
     }
 }

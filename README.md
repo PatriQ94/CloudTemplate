@@ -42,6 +42,7 @@ TBD
 - [x] Basket API architecture
 - [ ] Order API architecture
 - [ ] API gateway implemented
+- [ ] Redis caching implemented
 - [x] MassTransit configured
 - [x] RabbitMQ integrated
 - [x] Serilog logging

@@ -1,14 +1,26 @@
-﻿using Product.API.BO.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using Product.API.BO.Interfaces;
 
 namespace Product.API.DAL.Repositories;
 
 public class ProductRepository : IProductRepository
 {
+    private readonly DBContext _context;
+
+    public ProductRepository(DBContext context)
+    {
+        _context = context;
+        _context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+    }
+
     // Temporary in-memory list instead of real database
     private static readonly List<Models.Product> _products = [];
 
     public async Task<Guid> Insert(string name, string code, decimal price, string? description)
     {
+
+        var canConnect = await _context.Database.CanConnectAsync();
+
         Models.Product? product = _products.Find(p => p.Code == code);
         if (product != null)
         {
