@@ -16,14 +16,16 @@
 
 ## About
 
+
 This project showcases one of many possible implementations of [microservices](https://microservices.io/) in .NET 8. 
 It incorporates a range of tools and technologies, including [PostgreSQL](https://www.postgresql.org/) for data storage, 
 [Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/) as the ORM, [Redis](https://redis.io/) for caching, 
 and [RabbitMQ](https://www.rabbitmq.com/) with [MassTransit](https://masstransit.io/) for event-based communication 
 between microservices. Logging is handled by [Serilog](https://serilog.net/), unit testing 
-uses [Moq](https://github.com/devlooped/moq), and API gateways 
-and [.NET Aspire](https://learn.microsoft.com/en-us/dotnet/aspire/get-started/aspire-overview) are used to 
-orchestrate the application.
+uses [Moq](https://github.com/devlooped/moq), load testing is done with [k6](https://k6.io/), 
+and API gateways along with [.NET Aspire](https://learn.microsoft.com/en-us/dotnet/aspire/get-started/aspire-overview) 
+are used to orchestrate the application.
+
 
 **The main purpose of the project is to be used as a reference implementation in
 case of need.**
@@ -73,4 +75,7 @@ TBD
 - [x] Serilog logging
 - [x] PostgreSQL integrated
 - [x] EntityFramework configured
-- [ ] TBD, many many more
+- [ ] Unit tests
+- [ ] Load tests
+- [ ] Documentation
+- [ ] TBD
