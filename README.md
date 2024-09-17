@@ -46,6 +46,6 @@ TBD
 - [x] MassTransit configured
 - [x] RabbitMQ integrated
 - [x] Serilog logging
-- [ ] PostgreSQL integrated
-- [ ] EntityFramework configured
+- [x] PostgreSQL integrated
+- [x] EntityFramework configured
 - [ ] TBD, many many more
