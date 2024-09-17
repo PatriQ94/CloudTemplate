@@ -1,4 +1,7 @@
 ﻿
+<h1 align="center">
+  <img src="Docs/Net8.png"></a>
+</h1>
 
 <h2 align="center">.NET 8 microservices reference implementation</h2>
 
@@ -26,6 +29,8 @@ case of need.**
 These docs are work in progress :)
 
 ## Architecture
+![Architecture](Docs/Architecture.png)
+
 TBD
 
 ## Prerequisites
