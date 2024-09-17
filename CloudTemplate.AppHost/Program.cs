@@ -20,7 +20,7 @@ var basketApi = builder.AddProject<Projects.Basket_API>("basket-api");
 
 // Define references between resources
 productApi.WithReference(basketApi).WithReference(redis).WithReference(messaging).WithReference(postgresdb);
-orderApi.WithReference(basketApi).WithReference(postgresdb); ;
+orderApi.WithReference(basketApi).WithReference(postgresdb);
 basketApi.WithReference(productApi).WithReference(orderApi).WithReference(messaging).WithReference(postgresdb);
 
 builder.Build().Run();

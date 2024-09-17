@@ -5,7 +5,7 @@ namespace Product.API.BL;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddBusinessLogic(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddBusinessLogic(this IServiceCollection services)
     {
         services.AddScoped<IProductService, ProductService>();
 

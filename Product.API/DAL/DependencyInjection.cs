@@ -5,9 +5,10 @@ namespace Product.API.DAL;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddDataAccessLayer(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddDataAccessLayer(this IServiceCollection services, WebApplicationBuilder builder)
     {
-        services.AddNpgsql<DBContext>("postgresdb");
+        builder.AddNpgsqlDbContext<DBContext>("postgresdb");
+        //services.AddNpgsql<DBContext>("postgresdb");
 
         services
             .AddScoped<IProductRepository, ProductRepository>()

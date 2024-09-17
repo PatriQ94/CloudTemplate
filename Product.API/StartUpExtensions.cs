@@ -30,11 +30,8 @@ public static class StartUpExtensions
         });
 
         // Add services to the container.
-        builder.Services.AddHttpClient();
-
-        // Add services to the container.
-        builder.Services.AddBusinessLogic(builder.Configuration);
-        builder.Services.AddDataAccessLayer(builder.Configuration);
+        builder.Services.AddBusinessLogic();
+        builder.Services.AddDataAccessLayer(builder);
 
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
