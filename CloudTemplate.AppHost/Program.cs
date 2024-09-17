@@ -7,7 +7,7 @@ var messaging = builder.AddRabbitMQ("rabbitmq", username, password).WithManageme
 
 // Register postgres
 var dataDirectory = Environment.CurrentDirectory.Replace("CloudTemplate.AppHost", "Data");
-var postgres = builder.AddPostgres("postgres").WithPgAdmin().WithDataBindMount("C:\\Repositories\\CloudTemplate\\Data");
+var postgres = builder.AddPostgres("postgres").WithPgAdmin().WithDataBindMount(dataDirectory);
 var postgresdb = postgres.AddDatabase("postgresdb");
 
 // Register Redis cache
