@@ -56,10 +56,25 @@ independently functioning slices.
 - **DAL**: The **Data Access Layer (DAL)** is where all the queries to the database reside. The repository pattern is used in this layer.
 
 ## Prerequisites
-TBD
 
-## Build and run
-TBD
+- [Visual Studio 2022](https://visualstudio.microsoft.com/vs/)
+
+## Build and Run
+
+Since this is a reference project focused more on architectural design rather than deployment on platforms like Kubernetes, the easiest and fastest way to run the project is directly from Visual Studio.
+
+1. Create a folder on your local computer to clone the repository-something like `C:\source` will work.
+
+2. Open a command prompt in the newly created folder and clone the [CloudTemplate repository from GitHub](https://github.com/PatriQ94/CloudTemplate):
+    ```console
+    git clone https://github.com/PatriQ94/CloudTemplate.git
+    ```
+
+3. Navigate to the `CloudTemplate` folder and open `CloudTemplate.sln` with Visual Studio.
+
+4. Once the solution is open, right-click the `CloudTemplate.AppHost` project and select `Set as Startup Project` if it's not already selected.
+
+5. Click the green `https` button at the top of your screen, and that's it - easy peasy!
 
 ## Roadmap
 
